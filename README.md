@@ -1,8 +1,10 @@
-# aroll-skill
+# claude-code-auto-video-edit
 
 一个 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 斜杠命令，自动完成口播/教程类视频的 **A-roll 粗剪**。
 
 丢一个素材文件夹进去 → 自动转写、识别好坏 take、去掉静音 → 在达芬奇里生成可直接编辑的 **时间线 + SRT 字幕**。
+
+![demo](demo.gif)
 
 ## 它做了什么
 
@@ -87,11 +89,13 @@ cp aroll.md .claude/commands/
 
 ---
 
-# aroll-skill (English)
+# claude-code-auto-video-edit (English)
 
 A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) slash command that automates **A-roll rough cuts** for talking-head and voiceover videos.
 
 Give it a folder of clips → it transcribes, detects good/bad takes, removes silence, and builds a ready-to-edit **DaVinci Resolve timeline** with synced **SRT subtitles**.
+
+![demo](demo.gif)
 
 ## What it does
 
