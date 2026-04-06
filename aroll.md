@@ -81,7 +81,30 @@ DYLD_LIBRARY_PATH="/Applications/DaVinci Resolve/DaVinci Resolve.app/Contents/Li
 - Save the .srt file in the footage folder
 
 ### Step 8: Execute
-- Confirm DaVinci Resolve is open and running
+- Check if DaVinci Resolve is already running:
+  - macOS: `pgrep -x "DaVinci Resolve"`
+  - Windows: `tasklist /FI "IMAGENAME eq Resolve.exe"`
+  - Linux: `pgrep -x resolve`
+- If not running, launch it automatically:
+  - macOS: `open -a "DaVinci Resolve"`
+  - Windows/Linux: add a comment in the script showing the typical executable path for the user to configure
+- Wait for the DaVinci Resolve scripting API to be ready. Add a retry loop at the start of the generated Python script:
+  ```python
+  import time
+  resolve = None
+  for i in range(30):  # wait up to 30 seconds
+      try:
+          import DaVinciResolveScript as dvr
+          resolve = dvr.scriptapp("Resolve")
+          if resolve:
+              break
+      except:
+          pass
+      time.sleep(1)
+  if not resolve:
+      print("Error: Could not connect to DaVinci Resolve. Please make sure it is fully launched.")
+      exit(1)
+  ```
 - Run the generated Python script
 - Verify the timeline was created successfully
 - Report results and tell the user where the SRT file is
